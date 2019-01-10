@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cricket Score Card</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <script src="model.js"></script>
+    <script src="controller.js"></script>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>Batsman 1</td>
+        <td>Batsman 2</td>
+        <td>Bowler</td>
+        <td>Overs</td>
+        <td>Score</td>
+        <td>Wickets</td>
+      </tr>
+      <tr>
+        <td id="1">Sachin</td>
+        <td id="2">Dhoni</td>
+        <td id="3">Zaheer Khan</td>
+        <td id="4">2.0</td>
+        <td id="5">24</td>
+        <td id="6">24</td>
+      </tr>
+    </table>
+
+    <div style="display: flex">
+      <h2>Ball Status:</h2>
+      <input type="text" id="input" />
+      <button onclick="update()">update Score</button>
+      <button onclick="location.reload()">Reload</button>
+    </div>
+  </body>
+</html>
