@@ -11,7 +11,7 @@ const displayPlayers = function({ batsmen, bowler, score }) {
   getId('6').innerText = score.wickets;
 };
 
-let scoreCard = new createInitialScoreCard('sachin', 'dhoni', 'zaheer');
+let scoreCard = new ScoreCard('sachin', 'dhoni', 'zaheer');
 
 const update = function() {
   let ballStatus = getId('input').value;

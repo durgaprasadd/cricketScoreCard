@@ -24,7 +24,7 @@ const createScore = function() {
   return { total, overs, wickets };
 };
 
-const hasRuns = function(ballStatus) {
+const getRuns = function(ballStatus) {
   let runs = ballStatus.split('+');
   runs = runs[runs.length - 1];
   const validRuns = ['0', '1', '2', '3', '4', '6'];
@@ -34,7 +34,7 @@ const hasRuns = function(ballStatus) {
   return 0;
 };
 
-const isOut = function(ballStatus) {
+const getNoOfWickets = function(ballStatus) {
   const chances = ['caught', 'wicket', 'bowled', 'runout', 'lbw'];
   if (chances.includes(ballStatus)) {
     return 1;
@@ -42,10 +42,10 @@ const isOut = function(ballStatus) {
   return 0;
 };
 
-const validateScore = function(ballStatus) {
-  let runs = hasRuns(ballStatus);
+const parseScore = function(ballStatus) {
+  let runs = getRuns(ballStatus);
   let balls = 0.1;
-  let wickets = isOut(ballStatus);
+  let wickets = getNoOfWickets(ballStatus);
   if (ballStatus.includes('wide') || ballStatus.includes('noball')) {
     runs += 1;
     return { runs, balls: 0, wickets };
@@ -61,14 +61,14 @@ const convertBallsToOvers = function(overs) {
   return overs;
 };
 
-class createInitialScoreCard {
+class ScoreCard {
   constructor(player1, player2, bowler) {
     this.batsmen = createBatsmen(player1, player2);
     this.bowler = createBowler(bowler);
     this.score = createScore();
   }
   updateScore(ballStatus) {
-    let { runs, balls, wickets } = validateScore(ballStatus);
+    let { runs, balls, wickets } = parseScore(ballStatus);
     this.score.total += runs;
     this.score.overs += balls;
     this.score.overs = +convertBallsToOvers(this.score.overs).toFixed(1);
